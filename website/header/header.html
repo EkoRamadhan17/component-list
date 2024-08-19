@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      font-family: sans-serif;
+      font-size: 0.9rem;
+    }
+
+    :root {
+      --light: #fff;
+      --text: rgb(43, 43, 43);
+      --btn-hover: rgb(199, 199, 199);
+      --text-hover: rgb(0, 0, 0);
+    }
+    .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--light);
+      z-index: 999;
+      display: flex;
+
+      justify-content: space-between;
+      padding: 0.5rem 5%;
+      align-items: center;
+      border-bottom: 2px solid var(--text);
+    }
+    .header-container #btn-menu {
+      background-color: transparent;
+      cursor: pointer;
+      display: none;
+    }
+    .navigasi-list ul li {
+      display: inline;
+      margin-inline: 0.5rem;
+    }
+    .navigasi-list ul li.active a {
+      background-color: var(--text);
+      color: var(--light);
+    }
+    .navigasi-list ul li:hover:not(.active) a {
+      background-color: var(--btn-hover);
+      /* color: var(--light); */
+    }
+    .navigasi-list li a {
+      color: var(--text);
+      transition: color 0.2s linear, background-color 0.3s ease-in;
+      padding: 0.4rem 0.6rem;
+      border-radius: 5px;
+      /* background-color: red; */
+    }
+    .navigasi-list li:hover a {
+      color: var(--text-hover);
+    }
+    .shadow-nav {
+      display: none;
+    }
+
+    @media only screen and (max-width: 560px) {
+      .header-container {
+        padding-inline: 2%;
+      }
+      .header-container #btn-menu {
+        display: block;
+      }
+      .navigasi-list {
+        display: none;
+      }
+      .shadow-nav {
+        /* background-color: red; */
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: -100%;
+        padding-block: 0.3rem;
+        transition: all 0.6s linear;
+        border-bottom: 1px solid var(--text);
+        padding-inline: 2%;
+      }
+      .shadow-nav.active {
+        top: 2.9rem;
+      }
+      .shadow-nav .navigasi-list {
+        display: block;
+      }
+      .shadow-nav ul li {
+        display: block;
+        margin: 0.3rem 0;
+      }
+      .shadow-nav a {
+        display: block;
+      }
+    }
+  </style>
+
+  <body>
+    <header class="header-container">
+      <div class="logo">
+        <img src="asset/logo.svg" alt="logo" />
+      </div>
+
+      <nav class="navigasi-list">
+        <ul>
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Date</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <button id="btn-menu" onclick="showNav(event)">
+        <img src="asset/icon/menu.svg" alt="menu" />
+      </button>
+    </header>
+    <div class="shadow-nav"></div>
+    <script>
+      const nav = document.querySelector(".navigasi-list ").cloneNode(true);
+
+      const shdNav = document.querySelector(".shadow-nav");
+      shdNav.append(nav);
+      console.log(shdNav);
+
+      function showNav(event) {
+        shdNav.classList.toggle("active");
+      }
+
+      const linkNav = document.querySelectorAll("nav ul li a");
+      linkNav.forEach((link) => {
+        link.addEventListener("click", () => {
+        //   alert("hello");
+          linkNav.forEach((item) => item.parentElement.classList.remove("active"));
+          link.parentElement.classList.add("active")
+        });
+      });
+    </script>
+  </body>
+</html>
