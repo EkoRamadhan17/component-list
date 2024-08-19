@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel Native Web</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+      }
+      .hero-area {
+        overflow-x: hidden;
+        position: relative;
+        scroll-behavior: smooth;
+      }
+      .hero-area::-webkit-scrollbar {
+        display: none;
+      }
+      .hero-area > button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: .1rem;
+        border-radius: 10px;
+      }
+      .btn-next {
+        right: 5%;
+      }
+      .btn-prev {
+        left: 5%;
+      }
+      .slider-container {
+        width: max-content;
+        height: 300px;
+        transition: transform 0.5s ease-in-out;
+      }
+      .slider-list {
+        display: flex;
+        width: 100%;
+      }
+      .slider-item {
+        width: 100vw;
+        height: 300px;
+      }
+      .slider-item img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+      .slider-dot {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 5px;
+      }
+      .slider-dot span {
+        display: block;
+        width: 7px;
+        height: 7px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out all;
+      }
+      .slider-dot span.active {
+        width: 11px;
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero-area">
+      <div class="slider-container">
+        <div class="slider-list">
+          <div class="slider-item">
+            <img src="asset/images/item1.jpg" alt="Item 1" />
+          </div>
+          <div class="slider-item">
+            <img src="asset/images/item2.jpg" alt="Item 2" />
+          </div>
+          <div class="slider-item">
+            <img src="asset/images/item3.jpg" alt="Item 3" />
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-next">
+        <img src="asset/btn-next.svg" alt="Next" />
+      </button>
+      <button class="btn-prev">
+        <img src="asset/btn-prev.svg" alt="Previous" />
+      </button>
+
+      <div class="slider-dot">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </main>
+
+    <script>
+      const sliderContainer = document.querySelector(".slider-container");
+      const slides = document.querySelectorAll(".slider-item");
+      const prevBtn = document.querySelector(".btn-prev");
+      const nextBtn = document.querySelector(".btn-next");
+      const dots = document.querySelectorAll(".slider-dot span");
+
+      let currentIndex = 0;
+      let direction = 1; // 1 for forward, -1 for backward
+
+      function updateSliderPosition() {
+        let offset = currentIndex * -100;
+        sliderContainer.style.transform = `translateX(${offset}vw)`;
+        updateActiveDot();
+      }
+
+      function updateActiveDot() {
+        dots.forEach((dot) => dot.classList.remove("active"));
+        dots[currentIndex].classList.add("active");
+      }
+
+      function changeSlide() {
+        currentIndex += direction;
+        if (currentIndex === slides.length) {
+          direction = -1;
+          currentIndex -= 2;
+        } else if (currentIndex < 0) {
+          direction = 1;
+          currentIndex = 1;
+        }
+        updateSliderPosition();
+      }
+
+      nextBtn.addEventListener("click", () => {
+        direction = 1;
+        changeSlide();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        direction = -1;
+        changeSlide();
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          currentIndex = index;
+          direction = (currentIndex > dots.length - 1) ? -1 : 1;
+          updateSliderPosition();
+        });
+      });
+
+      setInterval(changeSlide, 5000);
+
+      updateSliderPosition();
+    </script>
+  </body>
+</html>
