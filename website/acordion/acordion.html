@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Modern</title>
+    <style>
+        :root{
+            --white: #fff;
+            --bg-light: #f7f7f7;
+            --bg-component: #f9f9f9;
+            --bg-component-hover: #e2e2e2;
+            --bg-component-active: #d1d1d1;
+            --icon-color: #777;
+            --text: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            /* padding: 20px; */
+        }
+
+        .accordion-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .accordion {
+            background-color: var(--bg-component);
+            color: var(--text);
+            cursor: pointer;
+            padding: 16px 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover {
+            background-color: var(--bg-component-hover);
+        }
+
+        .accordion.active {
+            background-color: var(--bg-component-active);
+        }
+
+        .accordion::after {
+            content: '\002B';
+            font-size: 18px;
+            color: var(--icon-color);
+            margin-left: 5px;
+            transition: transform 0.4s ease;
+        }
+
+        .accordion.active::after {
+            transform: rotate(45deg);
+            color: var(--text);
+        }
+
+        .panel {
+            padding: 0 20px;
+            background-color: var(--bg-light);
+            max-height: 0;
+            overflow: hidden;
+            border-top: 1px solid rgba(51, 51, 51, 0.2); 
+            border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .panel-content {
+            padding: 20px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+
+<div class="accordion-container">
+    <button class="accordion">Bagian 1</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>Konten untuk bagian 1. Ini adalah penjelasan yang lebih detail dan informatif.</p>
+        </div>
+    </div>
+
+    <button class="accordion">Bagian 2</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>Konten untuk bagian 2. Informasi tambahan bisa ditambahkan di sini.</p>
+        </div>
+    </div>
+
+    <button class="accordion">Bagian 3</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>Konten untuk bagian 3. Menyediakan lebih banyak detail jika diperlukan.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const accordions = document.querySelectorAll('.accordion');
+
+    accordions.forEach(accordion => {
+        accordion.addEventListener('click', function() {
+            this.classList.toggle('active');
+
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+                panel.style.paddingTop = '0';
+                panel.style.paddingBottom = '0';
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                panel.style.paddingTop = '20px';
+                panel.style.paddingBottom = '20px';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

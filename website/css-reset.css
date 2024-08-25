@@ -1,0 +1,155 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+/* Set default font settings */
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #333;
+    background-color: #f7f7f7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset heading styles */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+/* Reset other text elements */
+p {
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+ul, ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+/* Blockquote styles */
+blockquote {
+    margin: 1.5rem 0;
+    padding: 0.5rem 1.5rem;
+    background-color: #f9f9f9;
+    border-left: 5px solid #ccc;
+    font-size: 18px;
+    color: #555;
+}
+
+small, .small-text {
+    font-size: 14px;
+}
+
+footer, .footer-text {
+    font-size: 12px;
+}
+
+/* Reset for form elements */
+input, button, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Image and media elements reset */
+img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+/* Reset table styles */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Miscellaneous resets */
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 1.5rem 0;
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+address {
+    font-style: normal;
+    line-height: inherit;
+}
